@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: "python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    networks:
+      - my_network
+
+  queue:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: "python consumer.py"
+    depends_on:
+      - db
+    networks:
+      - my_network
+
+  db:
+    image: postgis/postgis:14-master
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=backoffice
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Qaws4503
+      - POSTGRES_ROOT_PASSWORD=Qaws4503
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+    networks:
+        - my_network
+
+networks:
+  my_network:
