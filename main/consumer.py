@@ -4,7 +4,7 @@ import pika
 
 from main import Product, db, app
 
-params = pika.URLParameters('amqps://bimotgiv:10GC1c0XEwDhiNrCb7D69J9jq2MYfrf-@prawn.rmq.cloudamqp.com/bimotgiv')
+params = pika.URLParameters('')
 
 conection = pika.BlockingConnection(params)
 
@@ -15,8 +15,7 @@ channel.queue_declare(queue='main')
 def callback(ch, method, properties, body):
     with app.app_context():
         print('Received in main')
-        data = json.loads(body)
-        print(data)
+        data = json.loads(body)       
 
         if properties.content_type == 'product_created':
             product = Product(id=data['id'], title=data['title'], imange=data['image'])

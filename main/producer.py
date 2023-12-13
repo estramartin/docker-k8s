@@ -1,7 +1,7 @@
 import pika
 import json
 
-params = pika.URLParameters('amqps://bimotgiv:10GC1c0XEwDhiNrCb7D69J9jq2MYfrf-@prawn.rmq.cloudamqp.com/bimotgiv')
+params = pika.URLParameters('')
 
 conection = pika.BlockingConnection(params)
 

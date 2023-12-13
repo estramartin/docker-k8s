@@ -32,8 +32,7 @@ services:
     environment:
       - POSTGRES_DB=main
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Qaws4503
-      - POSTGRES_ROOT_PASSWORD=Qaws4503
+   
     volumes:
       - ./dbdata:/var/lib/postgresql/data
     networks:

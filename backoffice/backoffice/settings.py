@@ -84,7 +84,7 @@ DATABASES = {
             'ENGINE': 'django.contrib.gis.db.backends.postgis',
             'NAME': 'backoffice',
             'USER': 'postgres',
-            'PASSWORD': 'Qaws4503',
+           
             'HOST': 'db',
             'PORT': '5432',
             'ATOMIC_REQUESTS': True,
